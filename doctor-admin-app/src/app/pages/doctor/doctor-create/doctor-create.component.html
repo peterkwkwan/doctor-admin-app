@@ -2,14 +2,20 @@
     <form [formGroup]="doctorForm" (ngSubmit)="submitForm()">
         <div>
             <mat-form-field class="min-width">
-                <mat-label>Username</mat-label>
-                <input required matInput formControlName="username">
+                <mat-label>First Name</mat-label>
+                <input required matInput formControlName="firstName">
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field class="min-width">
+                <mat-label>Last Name</mat-label>
+                <input required matInput formControlName="lastName">
             </mat-form-field>
         </div>
         <div>
             <mat-form-field class="full-width">
-                <mat-label>User role</mat-label>
-                <input required formControlName="role" matInput placeholder="Description of doctor, practice area, etc.">
+                <mat-label>Status</mat-label>
+                <input required formControlName="status" matInput placeholder="Status of doctor, etc.">
             </mat-form-field>
         </div>
         <div>
@@ -26,7 +32,13 @@
         <div>
             <mat-form-field class="full-width">
                 <mat-label>Contact Email</mat-label>
-                <input required formControlName="detail" matInput placeholder="Ex. JohnSmith@manulife.com">
+                <input required formControlName="email" matInput placeholder="Ex. JohnSmith@manulife.com">
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field class="full-width">
+                <mat-label>Contact Phone</mat-label>
+                <input required formControlName="phone" matInput placeholder="">
             </mat-form-field>
         </div>
         <button class="add-doctor-btn" mat-button type="submit">Submit</button>

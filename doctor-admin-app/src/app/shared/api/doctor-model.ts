@@ -1,15 +1,12 @@
 export interface Doctor {
     id: number,
-    username: string,
-    userRoles: [
-        {
-            role: string
-        }
-    ],
-    userContacts: [
-        {
-            type: string,
-            detail: string,
-        }
-    ]
+    firstName: string,
+    lastName: string,
+    status: string,
+    gender: string,
+    effective_date: string,
+    expiry_date: string,
+    email: string,
+    phone: string,
+    address: string
 }

@@ -38,12 +38,14 @@ export class DoctorComponent implements OnInit {
       (doctor: Doctor[]) => {
         doctor.forEach(
           doctor => {
-        if (doctor.username.toLowerCase().includes(this.searchName.toLowerCase()) || doctor.id.toString().includes(this.searchName)) { 
-          filtered.push(doctor);
-        }
+            if (doctor.firstName.toLowerCase().includes(this.searchName.toLowerCase()) ||
+              doctor.lastName.toLowerCase().includes(this.searchName.toLowerCase()) ||
+              doctor.id.toString().includes(this.searchName)) {
+              filtered.push(doctor);
+            }
+          });
+        this.doctors = filtered;
       });
-      this.doctors = filtered;
-    });   
   }
 
   clearSearch() {

@@ -14,10 +14,12 @@ export class DoctorCreateComponent implements OnInit {
 
   ngOnInit() {
       this.doctorForm = this.fb.group({
-      username: [''],
-      role: [''],
-      type: [''],
-      detail: ['']
+      firstName: [''],
+      lastName: [''],
+      status: [''],
+      email: [''],
+      phone: [''],
+      
     })
   }
 

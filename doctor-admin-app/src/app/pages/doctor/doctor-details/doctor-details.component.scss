@@ -1,6 +1,16 @@
-.container {
+@import "src/styles-variables.scss"; 
+
+.container-fluid {
     padding: 5%;
-}
-.table {
+    margin: 0;
     width: 100%;
+}
+.table{
+    width: 100%;
+    .row {
+    width: 100%;
+    }
+    th {
+        font-family: ManulifeJHSans-Demibold;
+    }
 }

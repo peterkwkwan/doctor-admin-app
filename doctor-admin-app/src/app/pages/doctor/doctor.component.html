@@ -16,13 +16,15 @@
             <thead>
                 <tr>
                     <th>ID</th>
-                    <th>User Name</th>
+                    <th>Last Name</th>
+                    <th>First Name</th>
                 </tr>
             </thead>
             <tbody>
                 <tr class="table-row" *ngFor="let doctor of doctors">
                     <td>{{doctor.id}}</td>
-                    <td>{{doctor.username}}</td>
+                    <td>{{doctor.lastName | uppercase}}</td>
+                    <td>{{doctor.firstName}}</td>
                     <td>
                         <button mat-button [routerLink]="[doctor.id]">Details</button>
                         <button mat-button [routerLink]="['update/' + doctor.id]">Update</button>

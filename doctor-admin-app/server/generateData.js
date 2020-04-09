@@ -2,21 +2,18 @@ var faker = require('faker');
 
 var database = { doctors: []};
 
-for (var i = 1; i<= 10; i++) {
+for (var i = 1; i<= 20; i++) {
   database.doctors.push({
     id: i,
-    username: faker.name.firstName() + faker.name.lastName(),
-    userRoles: [
-        {
-            role: faker.lorem.word(),
-        }
-    ],
-    userContacts: [
-        {
-            type: 'email',
-            detail: faker.internet.email()
-        }
-    ]
+    firstName: faker.name.firstName(),
+    lastName: faker.name.lastName(),
+    status: faker.lorem.word(),
+    gender: 'male',
+    effective_date: faker.date.past(),
+    expiry_date: faker.date.future(),
+    email: faker.internet.email(),
+    phone: faker.phone.phoneNumber(),
+    address: faker.address.streetName()
   });
 }
 
