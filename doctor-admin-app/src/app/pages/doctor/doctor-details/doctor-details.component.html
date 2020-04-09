@@ -7,11 +7,6 @@
                 <th class="col">First Name</th>
                 <th class="col">Status</th>
                 <th class="col">Gender</th>
-                <th class="col">Effective Date</th>
-                <th class="col">Expiry Date</th>
-                <th class="col">Email</th>
-                <th class="col">Phone</th>
-                <th class="col">Address</th>
             </tr>
         </thead>
         <tbody>
@@ -21,6 +16,19 @@
                 <td class="col">{{ currentDoctor?.firstName }}</td>
                 <td class="col">{{ currentDoctor?.status }}</td>
                 <td class="col">{{ currentDoctor?.gender }}</td>
+            </tr>
+        </tbody>
+        <thead>
+            <tr class="mt-4 row d-flex">
+                <th class="col">Effective Date</th>
+                <th class="col">Expiry Date</th>
+                <th class="col">Email</th>
+                <th class="col">Phone</th>
+                <th class="col">Address</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="row d-flex">
                 <td class="col">{{ currentDoctor?.effective_date }}</td>
                 <td class="col">{{ currentDoctor?.expiry_date }}</td>
                 <td class="col">{{ currentDoctor?.email }}</td>
