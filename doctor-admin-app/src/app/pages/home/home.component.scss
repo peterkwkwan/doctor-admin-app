@@ -1,0 +1,69 @@
+@import "src/styles-variables.scss";
+
+.header {
+    position: fixed;
+    padding: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 50;
+    height: 60px;
+    img {
+        width: 60px;
+        height: 60px;
+    }
+    img:hover {
+        cursor: pointer;
+    }
+    .title {
+        font-family: ManulifeJHSans-Bold;
+        cursor: pointer;
+    }
+    .title:focus {
+        outline:0;
+    }
+    .logout {
+        border: 1px solid $manulife-dark-pink;
+        color: $manulife-dark;
+        font-size: 0.9rem;
+    }
+}
+
+.container-fluid {
+    position: absolute;
+    top: 60px;
+    bottom: 60px;
+    left: 0;
+    right: 0;
+    padding: 0;
+    height: 100%;
+}
+
+.sidebar-rectangle {
+    width: 250px;
+    height: 80px;
+    display: flex;
+    padding-left: 15%;
+    align-items: center;
+    border-bottom: 1px solid rgba(128, 128, 128, 0.233);
+    a {
+        color: $manulife-dark;
+    }
+    a:hover {
+        text-decoration: none;
+    }
+}
+
+.sidebar-rectangle:hover {
+    background-color: rgba(167, 167, 167, 0.11);
+}
+
+.home-background {
+    height: 80%;
+    width: 100%;
+    background-image: url('src/assets/background-images/hong-kong.jfif');
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 0;
+    margin: 0;
+}

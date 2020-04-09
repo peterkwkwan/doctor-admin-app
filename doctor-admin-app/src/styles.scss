@@ -1,0 +1,44 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import '~bootstrap/scss/bootstrap-reboot';
+@import '~bootstrap/scss/bootstrap-grid';
+
+@font-face {
+  font-family: ManulifeJHSans-Regular;
+  src: url(assets/fonts/ManulifeJHSans-Regular.woff) format("opentype");
+}
+
+@font-face {
+  font-family: ManulifeJHSans-Light;
+  src: url(assets/fonts/ManulifeJHSans-Light.woff) format("opentype");
+}
+
+@font-face {
+  font-family: ManulifeJHSerif-Italic;
+  src: url(assets/fonts/ManulifeJHSerif-Italic.woff) format("opentype");
+} 
+
+@font-face {
+  font-family: ManulifeJHSans-Demibold;
+  src: url(assets/fonts/ManulifeJHSans-Demibold.woff) format("opentype");
+}
+
+@font-face {
+  font-family: ManulifeJHSans-Bold;
+  src: url(assets/fonts/ManulifeJHSans-Bold.woff) format("opentype");
+}
+
+html, body { height: 100%; }
+body {
+  margin: 0;
+  font-size: 18px;
+}
+
+button:focus {
+  outline-color: black;
+  outline-style: solid;
+  outline-width: 2px;
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

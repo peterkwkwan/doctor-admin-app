@@ -1,0 +1,36 @@
+@import "src/styles-variables.scss";
+
+.container {
+    padding: 5%;
+    margin: 0;
+}
+
+.add-doctor-btn {
+    border: 1px solid $manulife-green;
+    margin: 10px 0;
+}
+
+.add-doctor-btn:hover {
+    border: 1px solid $white;
+    color: $white;
+    background-color: $manulife-green;
+}
+
+.search-field {
+    min-width: 400px;
+}
+
+table{
+    td {
+        min-width: 70px;
+    }
+    th {
+        font-family: ManulifeJHSans-Demibold;
+    }
+    tr + tr {
+        border-top: 1px solid $divider;
+    }
+    tr:nth-child(even){
+        background-color: $white;
+    }
+}

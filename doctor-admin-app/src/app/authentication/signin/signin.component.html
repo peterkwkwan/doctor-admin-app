@@ -1,0 +1,22 @@
+<div class="container-fluid">
+  <div class="container">
+    <mat-toolbar color="primary">
+      <mat-toolbar-row class="justify-content-between">
+        <div>
+          <h1>Manulife</h1>
+        </div>
+        <div>
+          <button mat-button (click)="onSignin()">Sign-in</button>
+        </div>
+      </mat-toolbar-row>
+    </mat-toolbar>
+  </div>
+  <div class="jumbotron jumbotron-fluid d-flex">
+    <div class="container align-self-center">
+      <h1 class="display-4">Welcome to Manulife</h1>
+      <p class="lead">Sign in now to create, communicate & collaborate</p>
+      <button mat-raised-button color="primary" (click)="onSignin()">Single Sign-on</button>
+    </div>
+  </div>
+  <app-footer></app-footer>
+</div>

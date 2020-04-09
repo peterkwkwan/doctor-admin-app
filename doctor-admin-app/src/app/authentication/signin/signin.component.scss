@@ -1,0 +1,34 @@
+@import "src/styles-variables.scss";
+
+.container-fluid {
+  font-family: ManulifeJHSans-Regular;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+.mat-toolbar.mat-primary {
+  background: $white;
+  color: $manulife-green;
+}
+
+.jumbotron-fluid {
+  background: linear-gradient( rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.9) ), url('src/assets/background-images/office.jpg');
+  background : {
+    repeat: no-repeat;
+    attachment: fixed;
+    size: cover;
+  }
+  height: 100%;
+  color: $white;
+  text-align: center;
+
+  .mat-raised-button {
+    border-radius: 0;
+    background-color: $manulife-green;
+    height: 4em;
+    width: 10em;
+    font-size: 18px;
+  }
+}

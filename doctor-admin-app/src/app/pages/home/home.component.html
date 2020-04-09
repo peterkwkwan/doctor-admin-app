@@ -1,0 +1,23 @@
+<mat-toolbar class="header d-flex justify-content-between">
+    <div class="d-flex align-items-center">
+        <img src="assets/logos/manulife-logo.svg" (click)="sidenavToggle()">
+        <div class="ml-4 title" routerLink="">Manulife 宏利</div>
+    </div>
+    <div class="mr-4">
+        <button (click)="logout()" class="logout">Log out</button>
+    </div>
+</mat-toolbar>
+<mat-sidenav-container class="container-fluid">
+    <mat-sidenav class="sidenav" mode="side" [(opened)]="opened" fixedInViewport="true" fixedTopGap="60">
+        <div *ngFor="let category of categories">
+            <div class="sidebar-rectangle">
+                <a [routerLink]="category.url">{{category.name}}</a>
+            </div>
+        </div>
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <div class="home-background" *ngIf="route.children.length === 0"></div>
+        <router-outlet></router-outlet>
+        <app-footer></app-footer>
+    </mat-sidenav-content>
+</mat-sidenav-container>

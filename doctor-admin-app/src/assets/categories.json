@@ -1,0 +1,18 @@
+[
+    {
+      "name": "Doctors",
+      "image": "doctor.png",
+      "url": "/doctor"
+    },
+    {
+      "name": "Clinic",
+      "image": "clinic.png",
+      "url": "/clinic"
+    },
+    {
+      "name": "Service Provider",
+      "image": "service-provider.png",
+      "url": "/service-provider"
+    }
+  ]
+  

@@ -1,0 +1,36 @@
+<ng-container *ngIf="route.children.length === 0">
+    <div class="container">
+        <h1>Doctors</h1>
+        <button class="add-doctor-btn" mat-button routerLink="create">Add doctor</button>
+        <div>
+            <mat-form-field class="search-field">
+                <input matInput type="text" placeholder="Search doctors by name or ID" [(ngModel)]="searchName"
+                    (input)="filterDoctors()" />
+                <button mat-button *ngIf="searchName" matSuffix mat-icon-button aria-label="Clear"
+                    (click)="clearSearch()">
+                    <mat-icon>close</mat-icon>
+                </button>
+            </mat-form-field>
+        </div>
+        <table class="table table-striped table-dark">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>User Name</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="table-row" *ngFor="let doctor of doctors">
+                    <td>{{doctor.id}}</td>
+                    <td>{{doctor.username}}</td>
+                    <td>
+                        <button mat-button [routerLink]="[doctor.id]">Details</button>
+                        <button mat-button [routerLink]="['update/' + doctor.id]">Update</button>
+                        <button mat-button (click)="delete(doctor.id)">Remove</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</ng-container>
+<router-outlet></router-outlet>

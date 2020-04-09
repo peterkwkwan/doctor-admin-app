@@ -1,0 +1,22 @@
+<div class="container">
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col-3">Doctor ID</th>
+                <th scope="col-3">Username</th>
+                <th scope="col-3">Doctor Status</th>
+                <th scope="col-3">Contact Type</th>
+                <th scope="col-3">Contact Detail</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th scope="row">{{ currentDoctor?.id }}</th>
+                <td>{{ currentDoctor?.username }}</td>
+                <td>{{ currentDoctor?.userRoles[0].role }}</td>
+                <td>{{ currentDoctor?.userContacts[0].type }}</td>
+                <td>{{ currentDoctor?.userContacts[0].detail }}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
