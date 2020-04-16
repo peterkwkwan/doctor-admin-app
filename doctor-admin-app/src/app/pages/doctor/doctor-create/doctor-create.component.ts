@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
-import { DoctorApiService } from 'src/app/shared/api/doctor-api-service.service';
+import { DoctorApiService } from 'src/app/shared/api/doctor-api.service';
 
 @Component({
   selector: 'app-doctor-create',
@@ -19,7 +19,6 @@ export class DoctorCreateComponent implements OnInit {
       status: [''],
       email: [''],
       phone: [''],
-      
     })
   }
 

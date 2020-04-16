@@ -1,0 +1,27 @@
+@import "src/styles-variables.scss";
+
+.container {
+    padding: 5%;
+}
+
+form {
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+    .full-width {
+        width: 100%;
+    }
+    .min-width {
+        width: 50%;
+    }
+    .add-btn {
+        border: 1px solid $manulife-green;
+        margin: 10px 0;
+    }
+
+    .add-btn:hover {
+        border: 1px solid $white;
+        color: $white;
+        background-color: $manulife-green;
+    }
+}

@@ -1,0 +1,36 @@
+<ng-container *ngIf="route.children.length === 0">
+    <div class="container">
+        <h1>Service Providers</h1>
+        <button class="add-btn" mat-button routerLink="create">Add SP</button>
+        <div>
+            <mat-form-field class="search-field">
+                <input matInput type="text" placeholder="Search service providers by name or ID" [(ngModel)]="searchName"
+                    (input)="filter()" />
+                <button mat-button *ngIf="searchName" matSuffix mat-icon-button aria-label="Clear"
+                    (click)="clearSearch()">
+                    <mat-icon>close</mat-icon>
+                </button>
+            </mat-form-field>
+        </div>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>SP Name</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="table-row" *ngFor="let serviceProvider of serviceProviders">
+                    <td>{{serviceProvider.id}}</td>
+                    <td>{{serviceProvider.name | uppercase}}</td>
+                    <td>
+                        <button mat-button [routerLink]="[serviceProvider.id]">Details</button>
+                        <button mat-button [routerLink]="['update/' + serviceProvider.id]">Update</button>
+                        <button mat-button (click)="delete(serviceProvider.id)">Remove</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</ng-container>
+<router-outlet></router-outlet>

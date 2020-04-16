@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Doctor } from 'src/app/shared/api/doctor-model';
-import { DoctorApiService } from 'src/app/shared/api/doctor-api-service.service';
+import { Clinic } from 'src/app/shared/api/clinic-model';
+import { DoctorApiService } from 'src/app/shared/api/doctor-api.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ClinicApiService } from 'src/app/shared/api/clinic-api.service';
 
 @Component({
   selector: 'app-doctor-details',
@@ -10,11 +12,12 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class DoctorDetailsComponent implements OnInit {
   currentDoctor: Doctor = null;
+  clinic: Clinic = null;
 
   constructor(
     private doctorApiService: DoctorApiService,
-    private route: ActivatedRoute,
-    private router: Router) { }
+    private clinicApiService: ClinicApiService,
+    private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.getDoctor(this.route.snapshot.paramMap.get('id'));
@@ -25,35 +28,18 @@ export class DoctorDetailsComponent implements OnInit {
       .subscribe(
         data => {
           this.currentDoctor = data;
+          this.getClinic(this.currentDoctor.clinics[0].id);
         },
         error => {
           console.log(error);
         });
   }
 
-  // updateDoctor(status) {
-  //   const data = {
-  //     username: this.currentDoctor.username,
-  //     userContacts: this.currentDoctor.userContacts
-  //   };
-
-  //   this.doctorApiService.update(this.currentDoctor.id, data)
-  //     .subscribe(
-  //       response => {
-  //         console.log(response);
-  //       },
-  //       error => {
-  //         console.log(error);
-  //       });
-  // }
-
-
-  deleteDoctor() {
-    this.doctorApiService.delete(this.currentDoctor.id)
+  getClinic(id) {
+    this.clinicApiService.getById(id)
       .subscribe(
-        response => {
-          console.log(response);
-          this.router.navigate(['/doctor']);
+        (data: Clinic) => {
+          this.clinic = data;
         },
         error => {
           console.log(error);

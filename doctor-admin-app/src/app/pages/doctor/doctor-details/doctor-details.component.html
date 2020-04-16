@@ -1,4 +1,5 @@
 <div class="container-fluid">
+    <button mat-button class="update-btn" [routerLink]="['/doctor/update/' + currentDoctor?.id]">Update Doctor</button>
     <table class="table">
         <thead>
             <tr class="row d-flex">
@@ -37,4 +38,14 @@
             </tr>
         </tbody>
     </table>
+    <h3>Clinic Details</h3>
+
+    <div class="card" style="width: 18rem;">
+        <div class="card-body">
+          <h5 class="card-title">{{ clinic?.name }}</h5>
+          <h6 class="card-subtitle mb-2 text-muted">{{ clinic?.address }}</h6>
+          <p class="card-text">{{ clinic?.description }}</p>
+          <a [routerLink]="'/clinic/' + clinic?.id" class="card-link">Clinic details</a>
+        </div>
+      </div>
 </div>

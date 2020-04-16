@@ -1,0 +1,38 @@
+<div class="container-fluid">
+    <button mat-button class="update-btn" [routerLink]="['/clinic/update/' + currentClinic?.id]">Update Clinic</button>
+    <table class="table">
+        <thead>
+            <tr class="row d-flex">
+                <th class="col">Clinic ID</th>
+                <th class="col">Clinic Name</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="row d-flex">
+                <th class="col">{{ currentClinic?.id }}</th>
+                <td class="col">{{ currentClinic?.name }}</td>
+            </tr>
+        </tbody>
+        <thead>
+            <tr class="mt-4 row d-flex">
+                <th class="col">Description</th>
+                <th class="col">Address</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="row d-flex">
+                <td class="col">{{ currentClinic?.description }}</td>
+                <td class="col">{{ currentClinic?.address }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h3>Associated Service Provider</h3>
+    <div class="card" style="width: 18rem;">
+        <div class="card-body">
+          <h5 class="card-title">{{ serviceProvider?.id }}</h5>
+          <h6 class="card-subtitle mb-2 text-muted">{{ serviceProvider?.name }}</h6>
+          <a [routerLink]="'/service-provider/' + serviceProvider?.id" class="card-link">Service Provider details</a>
+        </div>
+      </div>
+</div>

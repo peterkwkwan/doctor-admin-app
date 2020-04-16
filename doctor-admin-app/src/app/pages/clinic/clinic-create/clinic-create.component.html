@@ -1,0 +1,23 @@
+<div class="container">
+    <form [formGroup]="clinicForm" (ngSubmit)="submitForm()">
+        <div>
+            <mat-form-field class="min-width">
+                <mat-label>Clinic Name</mat-label>
+                <input required matInput formControlName="name">
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field class="min-width">
+                <mat-label>Description</mat-label>
+                <input required matInput formControlName="description">
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field class="full-width">
+                <mat-label>Address</mat-label>
+                <input required formControlName="address" matInput placeholder="Address of clinic">
+            </mat-form-field>
+        </div>
+        <button class="add-btn" mat-button type="submit">Submit</button>
+    </form>
+</div>

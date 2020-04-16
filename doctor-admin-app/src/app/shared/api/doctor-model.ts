@@ -8,5 +8,8 @@ export interface Doctor {
     expiry_date: string,
     email: string,
     phone: string,
-    address: string
+    address: string,
+    clinics: [{
+        id: number
+    }]
 }

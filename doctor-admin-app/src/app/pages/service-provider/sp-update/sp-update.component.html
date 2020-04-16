@@ -1,0 +1,21 @@
+<div class="container-fluid">
+    <form [formGroup]="spForm" (ngSubmit)="submitForm()">
+        <div>
+            <mat-form-field>
+                <mat-label>Service Provider Name</mat-label>
+                <input matInput formControlName="name" [value]="currentSP?.name">
+            </mat-form-field>
+            <mat-form-field class="ml-5">
+                <mat-label>Effective Date</mat-label>
+                <input matInput formControlName="effective_date" [value]="currentSP?.effective_date">
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field>
+                <mat-label>Expiry Date</mat-label>
+                <input matInput formControlName="expiry_date" [value]="currentSP?.expiry_date">
+            </mat-form-field>
+        </div>
+        <button class="update-btn" mat-button type="submit">Submit</button>
+    </form>
+</div>

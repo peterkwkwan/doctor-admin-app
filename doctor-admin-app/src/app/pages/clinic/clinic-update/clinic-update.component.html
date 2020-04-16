@@ -1,0 +1,21 @@
+<div class="container-fluid">
+    <form [formGroup]="clinicForm" (ngSubmit)="submitForm()">
+        <div>
+            <mat-form-field>
+                <mat-label>Clinic Name</mat-label>
+                <input matInput formControlName="name" [value]="currentClinic?.name">
+            </mat-form-field>
+            <mat-form-field class="ml-5">
+                <mat-label>Description</mat-label>
+                <input matInput formControlName="description" [value]="currentClinic?.description">
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field>
+                <mat-label>Address</mat-label>
+                <input matInput formControlName="address" [value]="currentClinic?.address">
+            </mat-form-field>
+        </div>
+        <button class="update-btn" mat-button type="submit">Submit</button>
+    </form>
+</div>

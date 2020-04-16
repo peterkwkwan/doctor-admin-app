@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Doctor } from 'src/app/shared/api/doctor-model';
-import { DoctorApiService } from 'src/app/shared/api/doctor-api-service.service';
+import { DoctorApiService } from 'src/app/shared/api/doctor-api.service';
 import { ActivatedRoute, Router, Event, NavigationStart } from '@angular/router';
 
 @Component({
@@ -12,17 +12,15 @@ export class DoctorComponent implements OnInit {
 
   doctors: Doctor[] = [];
   searchName = '';
-  url;
 
-  constructor(private doctorApiService: DoctorApiService, public route: ActivatedRoute, private router: Router) {
+  constructor(private doctorApiService: DoctorApiService, public route: ActivatedRoute, private router: Router) {  }
+
+  ngOnInit() {
     this.router.events.subscribe((event: Event) => {
       if (event instanceof NavigationStart) {
         this.getDoctor();
       }
     });
-  }
-
-  ngOnInit() {
     this.getDoctor();
   }
 
@@ -58,17 +56,10 @@ export class DoctorComponent implements OnInit {
       .subscribe(
         response => {
           console.log(response);
-          this.reloadComponent();
+          this.getDoctor();
         },
         error => {
           console.log(error);
         });
   }
-
-  reloadComponent() {
-    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
-    this.router.onSameUrlNavigation = 'reload';
-    this.router.navigate(['/doctor']);
-  }
-
 }
