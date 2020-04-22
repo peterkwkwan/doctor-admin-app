@@ -13,6 +13,7 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatSelectModule} from '@angular/material/select';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
 
 // pages
 import { FooterComponent } from './shared/footer/footer.component';
@@ -31,6 +32,11 @@ import { ClinicComponent } from './pages/clinic/clinic.component';
 import { ClinicCreateComponent } from './pages/clinic/clinic-create/clinic-create.component';
 import { ClinicDetailsComponent } from './pages/clinic/clinic-details/clinic-details.component';
 import { ClinicUpdateComponent } from './pages/clinic/clinic-update/clinic-update.component';
+import { SpPackageComponent } from './pages/sp-package/sp-package.component';
+import { PackageCreateComponent } from './pages/sp-package/package-create/package-create.component';
+import { PackageDetailsComponent } from './pages/sp-package/package-details/package-details.component';
+import { PackageUpdateComponent } from './pages/sp-package/package-update/package-update.component';
+import { SurgeryComponent } from './pages/surgery/surgery.component';
 
 
 @NgModule({
@@ -50,7 +56,12 @@ import { ClinicUpdateComponent } from './pages/clinic/clinic-update/clinic-updat
     ClinicComponent,
     ClinicCreateComponent,
     ClinicDetailsComponent,
-    ClinicUpdateComponent
+    ClinicUpdateComponent,
+    SpPackageComponent,
+    PackageCreateComponent,
+    PackageDetailsComponent,
+    PackageUpdateComponent,
+    SurgeryComponent
   ],
   imports: [
     BrowserModule,
@@ -65,7 +76,8 @@ import { ClinicUpdateComponent } from './pages/clinic/clinic-update/clinic-updat
     MatIconModule,
     MatSidenavModule,
     MatFormFieldModule,
-    MatSelectModule
+    MatSelectModule,
+    MatAutocompleteModule
   ],
   providers: [],
   bootstrap: [AppComponent]

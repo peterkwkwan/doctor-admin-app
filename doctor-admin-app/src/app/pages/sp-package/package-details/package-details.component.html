@@ -1,0 +1,54 @@
+<div class="container-fluid">
+    <h2> {{ currentPackage?.name }} </h2>
+    <table class="table">
+        <thead>
+            <tr class="row d-flex">
+                <th class="col">Package ID</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="row d-flex">
+                <th class="col">{{ currentPackage?.id }}</th>
+            </tr>
+        </tbody>
+    </table>
+    <button mat-button class="update-btn" routerLink="/surgery">Customize Surgery</button>
+
+    <div class="my-5">
+        <h4>Service Providers in {{ currentPackage?.name }}</h4>
+        <table class="table">
+            <thead>
+                <tr class="row d-flex">
+                    <th class="col-4">Service Provider ID</th>
+                    <th class="col-5">Service Provider Name</th>
+                    <th class="col-3"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="row d-flex" *ngFor="let serviceProvider of serviceProviders">
+                    <th class="col-4">{{ serviceProvider?.id }}</th>
+                    <td class="col-5">{{ serviceProvider?.name }}</td>
+                    <td class="col-3">
+                        <button mat-button class="details-btn mr-2"
+                            [routerLink]="'/service-provider/' + serviceProvider?.id">Details</button>
+                        <button mat-button class="remove-btn" (click)="remove(serviceProvider?.id)">Remove</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <form (ngSubmit)="onSubmit()">
+            <div>
+                <mat-form-field class="search-form">
+                    <input class="full-width" type="text" placeholder="Search by Service Provider name or ID"
+                        aria-label="Number" matInput [formControl]="spSearchForm" [matAutocomplete]="auto">
+                    <mat-autocomplete #auto="matAutocomplete">
+                        <mat-option *ngFor="let selectedSP of filteredSPs | async" [value]="selectedSP.name">
+                            {{ selectedSP.name }}
+                        </mat-option>
+                    </mat-autocomplete>
+                </mat-form-field>
+            </div>
+            <button type="submit" mat-button class="update-btn">Add Service Provider</button>
+        </form>
+    </div>
+</div>

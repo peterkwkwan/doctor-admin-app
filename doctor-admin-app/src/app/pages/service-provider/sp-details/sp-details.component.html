@@ -1,17 +1,15 @@
 <div class="container-fluid">
-    <button mat-button class="update-btn" [routerLink]="['/service-provider/update/' + currentSP?.id]">Update Service
-        Provider</button>
+
+    <h3>{{ currentSP?.name }}</h3>
     <table class="table">
         <thead>
             <tr class="row d-flex">
                 <th class="col">Service Provider ID</th>
-                <th class="col">Service Provider Name</th>
             </tr>
         </thead>
         <tbody>
             <tr class="row d-flex">
                 <th class="col">{{ currentSP?.id }}</th>
-                <td class="col">{{ currentSP?.name }}</td>
             </tr>
         </tbody>
         <thead>
@@ -27,6 +25,8 @@
             </tr>
         </tbody>
     </table>
+    <button mat-button class="update-btn" [routerLink]="['/service-provider/update/' + currentSP?.id]">Update Service
+        Provider</button>
 
     <table class="table table-striped">
         <thead>
@@ -65,12 +65,14 @@
 
     </table>
 
-    <h3>Service Provider Package</h3>
-    <div class="card" style="width: 18rem;">
-        <div class="card-body">
-            <h5 class="card-title">Package ID</h5>
-            <h6 class="card-subtitle mb-2 text-muted">Package Name</h6>
-            <a href="#" class="card-link">Package Details</a>
+    <h3>Service Provider Packages</h3>
+    <div class="d-flex">
+        <div class="card mr-2" style="width: 18rem;" *ngFor="let package of packages">
+            <div class="card-body">
+                <h5 class="card-title">{{ package.name }}</h5>
+                <h6 class="card-subtitle mb-2 text-muted">Package ID: {{ package.id }}</h6>
+                <a href="#" [routerLink]="'/sp-package/' + package.id">Package Details</a>
+            </div>
         </div>
     </div>
 </div>

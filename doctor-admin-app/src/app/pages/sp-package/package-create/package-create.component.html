@@ -1,0 +1,11 @@
+<div class="container">
+    <form [formGroup]="spForm" (ngSubmit)="submitForm()">
+        <div>
+            <mat-form-field class="min-width">
+                <mat-label>Service Provider Name</mat-label>
+                <input required matInput formControlName="name">
+            </mat-form-field>
+        </div>
+        <button class="add-btn" mat-button type="submit">Submit</button>
+    </form>
+</div>

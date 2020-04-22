@@ -1,0 +1,11 @@
+<div class="container-fluid">
+    <form [formGroup]="packageForm" (ngSubmit)="submitForm()">
+        <div>
+            <mat-form-field>
+                <mat-label>Package Name</mat-label>
+                <input matInput formControlName="name" [value]="currentPackage?.name">
+            </mat-form-field>
+        </div>
+        <button class="update-btn" mat-button type="submit">Submit</button>
+    </form>
+</div>

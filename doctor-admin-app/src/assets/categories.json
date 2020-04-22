@@ -1,18 +1,22 @@
 [
-    {
-      "name": "Doctors",
-      "image": "doctor.png",
-      "url": "/doctor"
-    },
-    {
-      "name": "Clinic",
-      "image": "clinic.png",
-      "url": "/clinic"
-    },
-    {
-      "name": "Service Provider",
-      "image": "service-provider.png",
-      "url": "/service-provider"
-    }
-  ]
-  
+  {
+    "name": "Service Provider",
+    "image": "service-provider.png",
+    "url": "/service-provider"
+  },
+  {
+    "name": "SP Package",
+    "image": "sp-package.png",
+    "url": "/sp-package"
+  },
+  {
+    "name": "Clinic",
+    "image": "clinic.png",
+    "url": "/clinic"
+  },
+  {
+    "name": "Doctors",
+    "image": "doctor.png",
+    "url": "/doctor"
+  }
+]

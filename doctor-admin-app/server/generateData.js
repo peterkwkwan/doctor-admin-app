@@ -1,6 +1,6 @@
 var faker = require('faker');
 
-var database = { doctors: [], clinics: [], service_providers: []};
+var database = { doctors: [], clinics: [], service_providers: [], sp_package: []};
 
 for (var i = 1; i<= 20; i++) {
   database.doctors.push({
@@ -26,9 +26,11 @@ for (var i = 1; i<= 20; i++) {
     service_providers: [{
       id: i
     }],
-    doctor: {
-      id: i
-    }
+    doctor: [
+      { id: Math.round(Math.random() * 20) },
+      { id: Math.round(Math.random() * 20) },
+      { id: Math.round(Math.random() * 20) }
+    ]
   });
   database.service_providers.push({
     id: i,
@@ -37,8 +39,23 @@ for (var i = 1; i<= 20; i++) {
     expiry_date: faker.date.future(),
     clinic: [{
       id: i
-    }]
+    }],
+    sp_package: [
+      { id: Math.round(Math.random() * 20) },
+      { id: Math.round(Math.random() * 20) },
+      { id: Math.round(Math.random() * 20) }
+    ]
   });
+  database.sp_package.push({
+    id: i,
+    name: faker.company.companyName(),
+    service_providers: [
+      { id: Math.round(Math.random() * 20) },
+      { id: Math.round(Math.random() * 20) },
+      { id: Math.round(Math.random() * 20) },
+      { id: Math.round(Math.random() * 20) }
+  ]
+  })
 }
 
 console.log(JSON.stringify(database));

@@ -1,0 +1,88 @@
+<div class="container-fluid">
+    <div class="my-3">
+        <form (ngSubmit)="onSubmit()">
+            <div>
+                <mat-form-field class="search-form">
+                    <input class="full-width" type="text" placeholder="Search by Service Provider name or ID"
+                        aria-label="Number" matInput [formControl]="spSearchForm" [matAutocomplete]="auto">
+                    <mat-autocomplete #auto="matAutocomplete">
+                        <mat-option *ngFor="let selectedSP of filteredSPs | async" [value]="selectedSP.name">
+                            {{ selectedSP.name }}
+                        </mat-option>
+                    </mat-autocomplete>
+                </mat-form-field>
+            </div>
+            <button type="submit" mat-button class="update-btn">Select Service Provider</button>
+        </form>
+    </div>
+
+    <h3>{{ currentSP?.name }}</h3>
+
+    <div *ngIf="currentSP != null">
+        <h5>Available Surgery Types</h5>
+        <mat-form-field>
+            <mat-label>Select a surgery</mat-label>
+            <mat-select [(ngModel)]="selected" name="surgery">
+                <mat-option *ngFor="let surgery of surgeries" [value]="surgery.value">
+                    {{surgery.viewValue}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+
+    <div *ngIf="selected !== ''">
+        <table class="table">
+            <thead>
+                <tr class="row d-flex">
+                    <th class="col-3">Misc ID</th>
+                    <th class="col-3">Type</th>
+                    <th class="col-3">Type Description</th>
+                    <th class="col-3">Ext Ref Value</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="row d-flex">
+                    <th class="col-3">5</th>
+                    <td class="col-3">S</td>
+                    <td class="col-3">Surgery Package</td>
+                    <td class="col-3"> LA </td>
+                </tr>
+            </tbody>
+            <thead>
+                <tr class="row d-flex">
+                    <th class="col-3">Name_CHI</th>
+                    <th class="col-3">Value Amt</th>
+                    <th class="col-3">Effective Date</th>
+                    <th class="col-3">Expiry Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="row d-flex">
+                    <th class="col-3">-</th>
+                    <td class="col-3">6000</td>
+                    <td class="col-3">2020-04-22 Date</td>
+                    <td class="col-3">2022-04-21</td>
+                </tr>
+            </tbody>
+            <thead>
+                <tr class="row d-flex">
+                    <th class="col-3">RMK</th>
+                    <th class="col-3">Seq Order</th>
+                    <th class="col-3">SP_ID</th>
+                    <th class="col-3"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="row d-flex">
+                    <th class="col-3">-</th>
+                    <td class="col-3">2</td>
+                    <td class="col-3">A</td>
+                    <td class="col-3">
+                        <button mat-button class="details-btn mr-2">Update</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>

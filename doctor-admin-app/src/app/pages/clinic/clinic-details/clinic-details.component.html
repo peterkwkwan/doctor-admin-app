@@ -1,38 +1,76 @@
 <div class="container-fluid">
-    <button mat-button class="update-btn" [routerLink]="['/clinic/update/' + currentClinic?.id]">Update Clinic</button>
+    <h2> {{ currentClinic?.name }} </h2>
     <table class="table">
         <thead>
             <tr class="row d-flex">
                 <th class="col">Clinic ID</th>
-                <th class="col">Clinic Name</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr class="row d-flex">
-                <th class="col">{{ currentClinic?.id }}</th>
-                <td class="col">{{ currentClinic?.name }}</td>
-            </tr>
-        </tbody>
-        <thead>
-            <tr class="mt-4 row d-flex">
-                <th class="col">Description</th>
                 <th class="col">Address</th>
             </tr>
         </thead>
         <tbody>
             <tr class="row d-flex">
-                <td class="col">{{ currentClinic?.description }}</td>
+                <th class="col">{{ currentClinic?.id }}</th>
                 <td class="col">{{ currentClinic?.address }}</td>
             </tr>
         </tbody>
+        <thead>
+            <tr class="mt-4 row d-flex">
+                <th class="col">Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="row d-flex">
+                <td class="col">{{ currentClinic?.description }}</td>
+            </tr>
+        </tbody>
+        <button mat-button class="update-btn" [routerLink]="['/clinic/update/' + currentClinic?.id]">Update
+            Clinic</button>
     </table>
 
+    <div class="my-5">
+        <h4>Doctors available at {{ currentClinic?.name }}</h4>
+        <table class="table">
+            <thead>
+                <tr class="row d-flex">
+                    <th class="col-4">Doctor ID</th>
+                    <th class="col-5">Doctor Name</th>
+                    <th class="col-3"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="row d-flex" *ngFor="let doctor of availableDoctors">
+                    <th class="col-4">{{ doctor?.id }}</th>
+                    <td class="col-5">{{ doctor?.lastName | uppercase }}, {{ doctor?.firstName }}</td>
+                    <td class="col-3">
+                        <button mat-button class="details-btn mr-2"
+                            [routerLink]="'/doctor/' + doctor?.id">Details</button>
+                        <button mat-button class="remove-btn" (click)="remove(doctor?.id)">Remove</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <form (ngSubmit)="onSubmit()">
+            <div>
+                <mat-form-field class="search-form">
+                    <input class="full-width" type="text" placeholder="Search by doctor name or ID" aria-label="Number"
+                        matInput [formControl]="doctorSearchForm" [matAutocomplete]="auto">
+                    <mat-autocomplete #auto="matAutocomplete">
+                        <mat-option *ngFor="let selectedDoctor of filteredDoctors | async"
+                            [value]="selectedDoctor.firstName + ' ' + selectedDoctor.lastName">
+                            {{selectedDoctor.firstName}} {{selectedDoctor.lastName}}
+                        </mat-option>
+                    </mat-autocomplete>
+                </mat-form-field>
+            </div>
+            <button type="submit" mat-button class="update-btn">Add Doctor</button>
+        </form>
+    </div>
     <h3>Associated Service Provider</h3>
     <div class="card" style="width: 18rem;">
         <div class="card-body">
-          <h5 class="card-title">{{ serviceProvider?.id }}</h5>
-          <h6 class="card-subtitle mb-2 text-muted">{{ serviceProvider?.name }}</h6>
-          <a [routerLink]="'/service-provider/' + serviceProvider?.id" class="card-link">Service Provider details</a>
+            <h5 class="card-title">{{ serviceProvider?.id }}</h5>
+            <h6 class="card-subtitle mb-2 text-muted">{{ serviceProvider?.name }}</h6>
+            <a [routerLink]="'/service-provider/' + serviceProvider?.id" class="card-link">Service Provider details</a>
         </div>
-      </div>
+    </div>
 </div>

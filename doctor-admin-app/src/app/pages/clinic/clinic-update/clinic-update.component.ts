@@ -19,6 +19,9 @@ export class ClinicUpdateComponent implements OnInit {
     address: [''],
     service_providers: [{
       id: ['']
+    }],
+    doctor: [{
+      id: ['']
     }]
   })
 
@@ -50,6 +53,9 @@ export class ClinicUpdateComponent implements OnInit {
       address: this.currentClinic.address,
       service_providers: [{
         id: this.currentClinic.service_providers[0].id
+      }],
+      doctor: [{
+        id: this.currentClinic.doctor[0].id
       }]
     })
   }

@@ -5,5 +5,8 @@ export interface ServiceProvider {
     expiry_date: string,
     clinic: [{
         id: number
+    }],
+    sp_package: [{
+            id: number
     }]
 }

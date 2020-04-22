@@ -4,6 +4,8 @@ import { ClinicApiService } from 'src/app/shared/api/clinic-api.service';
 import { SPApiService } from 'src/app/shared/api/sp-api.service';
 import { ActivatedRoute } from '@angular/router';
 import { Clinic } from 'src/app/shared/api/clinic-model';
+import { SPPackageApiService } from 'src/app/shared/api/sp-package-api.service';
+import { SPPackage } from 'src/app/shared/api/sp-package-model';
 
 @Component({
   selector: 'app-sp-details',
@@ -14,10 +16,12 @@ export class SpDetailsComponent implements OnInit {
 
   currentSP: ServiceProvider = null;
   clinics: Clinic[] = [];
+  packages: SPPackage[] = [];
   selected = 'None';
 
   constructor( private clinicApiService: ClinicApiService,
     private spApiService: SPApiService,
+    private packageApiService: SPPackageApiService,
     private route: ActivatedRoute ) { }
 
   ngOnInit() {
@@ -29,6 +33,7 @@ export class SpDetailsComponent implements OnInit {
       .subscribe(
         (data: ServiceProvider) => {
           this.currentSP = data;
+          this.getPackages();
           for(var i = 0; i < this.currentSP.clinic.length; i++){
             this.getClinic(this.currentSP.clinic[i].id);
           }
@@ -46,6 +51,15 @@ export class SpDetailsComponent implements OnInit {
       err => {
         console.log(err);
       });
+  }
+
+  getPackages(){
+    for(var i = 0; i < this.currentSP.sp_package.length; i++){
+      this.packageApiService.getById(this.currentSP.sp_package[i].id).subscribe(
+        (data: SPPackage) => {
+          this.packages.push(data);
+        }
+      )};
   }
   
 }

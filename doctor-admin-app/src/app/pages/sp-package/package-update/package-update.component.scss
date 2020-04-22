@@ -1,0 +1,22 @@
+@import"src/styles-variables.scss";
+
+.container-fluid {
+    padding: 5%;
+    margin: 0;
+    width: 100%;
+}
+
+.update-btn {
+    border: 1px solid $manulife-green;
+    margin: 10px 0;
+}
+
+.update-btn:hover {
+    border: 1px solid $white;
+    color: $white;
+    background-color: $manulife-green;
+}
+
+.longer-box {
+    width: 300px;
+}
