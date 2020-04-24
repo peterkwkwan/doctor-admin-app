@@ -27,6 +27,15 @@
         color: $manulife-dark;
         font-size: 0.9rem;
     }
+    .user-account-btn {
+        border-radius: 100%;
+        background-color: $manulife-bright-green;
+        width: 40px;
+        height: 40px;
+        border: none;
+        color: $white;
+        margin-right:2px;
+      }
 }
 
 .container-fluid {

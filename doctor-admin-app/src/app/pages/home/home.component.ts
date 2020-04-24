@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import jsonData from "src/assets/categories.json";
 import { Router, ActivatedRoute } from '@angular/router';
+import { UserService } from 'src/app/authentication/user-service';
 
 @Component({
   selector: 'app-home',
@@ -9,9 +10,22 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class HomeComponent implements OnInit {
   opened = false;
-  categories = jsonData
+  categories = jsonData;
+  user = null;
+  firstname: string;
 
-  constructor(private router: Router, public route: ActivatedRoute) { }
+  constructor(private router: Router, public route: ActivatedRoute, private userService: UserService) {
+
+    this.userService.getUserInfo().subscribe(
+      (res: any) => {
+        this.user = res;
+        this.firstname = res.given_name.split("_", 1).toString();
+      },
+      err => {
+        console.log(err);
+      }
+    )
+  }
 
   ngOnInit(): void {
   }
@@ -21,7 +35,7 @@ export class HomeComponent implements OnInit {
   }
 
   logout(){
-    this.router.navigate(['/signin']);
+    this.router.navigate(['']);
   }
 
 }

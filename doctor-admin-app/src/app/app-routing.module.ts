@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { UserValidatorService } from './authentication/user-validator-guard';
+
 import { SigninComponent } from './authentication/signin/signin.component';
 import { HomeComponent } from './pages/home/home.component';
 import { DoctorComponent } from './pages/doctor/doctor.component';
@@ -20,11 +22,12 @@ import { PackageDetailsComponent } from './pages/sp-package/package-details/pack
 import { PackageUpdateComponent } from './pages/sp-package/package-update/package-update.component';
 import { SurgeryComponent } from './pages/surgery/surgery.component';
 
-
 const routes: Routes = [
-  { path: 'signin', component: SigninComponent },
+  { path: '', component: SigninComponent },
   {
-    path: '', component: HomeComponent, children: [
+    path: 'home', component: HomeComponent, 
+    // canActivate: [UserValidatorService], 
+    children: [
       {
         path: 'doctor', component: DoctorComponent, children: [
           { path: 'create', component:  DoctorCreateComponent },
@@ -56,7 +59,6 @@ const routes: Routes = [
       { path: 'surgery', component: SurgeryComponent }
     ]
   }
-  // { path: '', redirectTo: 'signin', pathMatch: 'full' },
 ];
 
 @NgModule({

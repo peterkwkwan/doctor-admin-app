@@ -3,8 +3,15 @@
         <img src="assets/logos/manulife-logo.svg" (click)="sidenavToggle()">
         <div class="ml-4 title" routerLink="">Manulife 宏利</div>
     </div>
-    <div class="mr-4">
-        <button (click)="logout()" class="logout">Log out</button>
+    <div class="mr-4 d-flex">
+        <button (click)="logout()" class="logout mr-3">Log out</button>
+        <div class="d-flex">
+            <button class="user-account-btn">
+                {{ user?.given_name
+                }}
+                test
+            </button>
+        </div>
     </div>
 </mat-toolbar>
 <mat-sidenav-container class="container-fluid">
@@ -16,7 +23,9 @@
         </div>
     </mat-sidenav>
     <mat-sidenav-content>
-        <div class="home-background" *ngIf="route.children.length === 0"></div>
+        <div class="home-background" *ngIf="route.children.length === 0">
+            <h1 class="p-5">Hello, {{ firstname }}</h1>
+        </div>
         <router-outlet></router-outlet>
         <app-footer></app-footer>
     </mat-sidenav-content>

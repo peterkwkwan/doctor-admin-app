@@ -2,21 +2,21 @@
   {
     "name": "Service Provider",
     "image": "service-provider.png",
-    "url": "/service-provider"
+    "url": "service-provider"
   },
   {
     "name": "SP Package",
     "image": "sp-package.png",
-    "url": "/sp-package"
+    "url": "sp-package"
   },
   {
     "name": "Clinic",
     "image": "clinic.png",
-    "url": "/clinic"
+    "url": "clinic"
   },
   {
     "name": "Doctors",
     "image": "doctor.png",
-    "url": "/doctor"
+    "url": "doctor"
   }
 ]

@@ -1,9 +1,14 @@
+// core
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
+// guard
+import { UserValidatorService } from './authentication/user-validator-guard';
 
 // material angular
 import {MatToolbarModule} from '@angular/material/toolbar';
@@ -19,7 +24,6 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import { FooterComponent } from './shared/footer/footer.component';
 import { SigninComponent } from './authentication/signin/signin.component';
 import { HomeComponent } from './pages/home/home.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DoctorComponent } from './pages/doctor/doctor.component';
 import { DoctorDetailsComponent } from './pages/doctor/doctor-details/doctor-details.component';
 import { DoctorUpdateComponent } from './pages/doctor/doctor-update/doctor-update.component';
@@ -37,7 +41,6 @@ import { PackageCreateComponent } from './pages/sp-package/package-create/packag
 import { PackageDetailsComponent } from './pages/sp-package/package-details/package-details.component';
 import { PackageUpdateComponent } from './pages/sp-package/package-update/package-update.component';
 import { SurgeryComponent } from './pages/surgery/surgery.component';
-
 
 @NgModule({
   declarations: [
@@ -79,7 +82,9 @@ import { SurgeryComponent } from './pages/surgery/surgery.component';
     MatSelectModule,
     MatAutocompleteModule
   ],
-  providers: [],
+  providers: [
+    UserValidatorService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
