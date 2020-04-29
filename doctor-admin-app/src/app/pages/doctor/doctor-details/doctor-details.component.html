@@ -35,7 +35,7 @@
                 </tr>
             </tbody>
         </table>
-        <button mat-button class="update-btn" [routerLink]="['/doctor/update/' + currentDoctor?.id]">Update
+        <button mat-button class="update-btn" [routerLink]="['/home/doctor/update/' + currentDoctor?.id]">Update
             Doctor</button>
     </div>
 
@@ -46,7 +46,7 @@
             <h5 class="card-title">{{ clinic?.name }}</h5>
             <h6 class="card-subtitle mb-2 text-muted">{{ clinic?.address }}</h6>
             <p class="card-text">{{ clinic?.description }}</p>
-            <a [routerLink]="'/clinic/' + clinic?.id" class="card-link">Clinic details</a>
+            <a [routerLink]="'/home/clinic/' + clinic?.id" class="card-link">Clinic details</a>
         </div>
     </div>
 </div>

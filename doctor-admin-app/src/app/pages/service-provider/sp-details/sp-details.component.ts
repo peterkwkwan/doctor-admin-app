@@ -34,24 +34,12 @@ export class SpDetailsComponent implements OnInit {
         (data: ServiceProvider) => {
           this.currentSP = data;
           this.getPackages();
-          for(var i = 0; i < this.currentSP.clinic.length; i++){
-            this.getClinic(this.currentSP.clinic[i].id);
-          }
         },
         error => {
           console.log(error);
         });
   }
 
-  getClinic(id){
-    this.clinicApiService.getById(id).subscribe(
-      data => {
-         this.clinics.push(data);
-      },
-      err => {
-        console.log(err);
-      });
-  }
 
   getPackages(){
     for(var i = 0; i < this.currentSP.sp_package.length; i++){

@@ -16,7 +16,7 @@ export class SpUpdateComponent implements OnInit {
     name: [''],
     effective_date: [''],
     expiry_date: [''],
-    clinic: [{
+    sp_package: [{
       id: ['']
     }]
   })
@@ -47,8 +47,8 @@ export class SpUpdateComponent implements OnInit {
       name: this.currentSP.name,
       effective_date: this.currentSP.effective_date,
       expiry_date: this.currentSP.expiry_date,
-      clinic: [{
-        id: this.currentSP.clinic[0].id
+      sp_package: [{
+        id: this.currentSP.sp_package[0].id
       }]
     })
   }

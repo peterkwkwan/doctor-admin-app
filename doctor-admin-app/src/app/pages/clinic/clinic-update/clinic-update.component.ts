@@ -17,7 +17,7 @@ export class ClinicUpdateComponent implements OnInit {
     name: [''],
     description: [''],
     address: [''],
-    service_providers: [{
+    sp_package: [{
       id: ['']
     }],
     doctor: [{
@@ -51,8 +51,8 @@ export class ClinicUpdateComponent implements OnInit {
       name: this.currentClinic.name,
       description: this.currentClinic.description,
       address: this.currentClinic.address,
-      service_providers: [{
-        id: this.currentClinic.service_providers[0].id
+      sp_package: [{
+        id: this.currentClinic.sp_package[0].id
       }],
       doctor: [{
         id: this.currentClinic.doctor[0].id

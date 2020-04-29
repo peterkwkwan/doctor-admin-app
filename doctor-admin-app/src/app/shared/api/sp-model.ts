@@ -3,9 +3,6 @@ export interface ServiceProvider {
     name: string,
     effective_date: string,
     expiry_date: string,
-    clinic: [{
-        id: number
-    }],
     sp_package: [{
             id: number
     }]

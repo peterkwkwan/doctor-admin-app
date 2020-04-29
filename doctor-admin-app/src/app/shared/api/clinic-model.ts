@@ -3,7 +3,7 @@ export interface Clinic {
     name: string,
     description: string,
     address: string,
-    service_providers: [{
+    sp_package: [{
         id: number
     }],
     doctor: [{

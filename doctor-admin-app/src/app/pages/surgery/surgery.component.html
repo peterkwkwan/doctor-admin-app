@@ -1,88 +1,102 @@
-<div class="container-fluid">
-    <div class="my-3">
-        <form (ngSubmit)="onSubmit()">
-            <div>
-                <mat-form-field class="search-form">
-                    <input class="full-width" type="text" placeholder="Search by Service Provider name or ID"
-                        aria-label="Number" matInput [formControl]="spSearchForm" [matAutocomplete]="auto">
-                    <mat-autocomplete #auto="matAutocomplete">
-                        <mat-option *ngFor="let selectedSP of filteredSPs | async" [value]="selectedSP.name">
-                            {{ selectedSP.name }}
-                        </mat-option>
-                    </mat-autocomplete>
-                </mat-form-field>
+<ng-container *ngIf="route.children.length === 0">
+    <div class="container-fluid">
+        <div class="my-3">
+            <button routerLink="create" mat-button class="update-btn">Add a Surgery Package</button>
+            <hr>
+            <form (ngSubmit)="onSubmitServiceProvider()">
+                <div>
+                    <mat-form-field class="mr-3" class="search-form">
+                        <input class="full-width" type="text" placeholder="Search by Service Provider name or ID"
+                            aria-label="Number" matInput [formControl]="spSearchForm" [matAutocomplete]="auto">
+                        <mat-autocomplete #auto="matAutocomplete">
+                            <mat-option *ngFor="let selectedSP of filteredSPs | async" [value]="selectedSP.name">
+                                {{ selectedSP.name }}
+                            </mat-option>
+                        </mat-autocomplete>
+                    </mat-form-field>
+                </div>
+                <button type="submit" mat-button class="update-btn">Select Service Provider</button>
+            </form>
+        </div>
+
+        <div *ngIf="currentSP != null" style="width: 50%;">
+            <mat-form-field>
+                <mat-label>Type</mat-label>
+                <mat-select [(ngModel)]="selectedType">
+                    <mat-option *ngFor="let type of types" [value]="type.name">
+                        {{type.name}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+
+        <ng-container *ngIf="selectedType != null">
+            <div *ngFor="let type of types; let i = index">
+                <div *ngIf="selectedType === type.name">
+                    <table class="table" *ngFor="let desc of type.description">
+                        <thead>
+                            <tr class="row d-flex">
+                                <th class="col">Type Description</th>
+                                <th class="col">Name CHI</th>
+                                <th class="col">Value Amount</th>
+                                <th class="col">RMK</th>
+                                <th class="col">Effective Date</th>
+                                <th class="col">Expiry Date</th>
+                                <th class="col">Seq Order</th>
+                                <th class="col"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="row d-flex">
+                                <td class="col">{{ desc.name }}</td>
+                                <td class="col"> - </td>
+                                <td class="col">{{ desc.price }}</td>
+                                <td class="col"> - </td>
+                                <td class="col">28-04-2020</td>
+                                <td class="col">27-04-2022</td>
+                                <td class="col">{{ desc.order }}</td>
+                                <td><button mat-button class="details-btn">Update</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <button *ngIf="add === false" mat-button class="update-btn" (click)="addSurgery()">Add surgery type</button>
+                    <form *ngIf="add === true" (ngSubmit)="addSurgeryType(i)" style="width: 100%">
+                        <div class="d-flex flex-wrap" style="width: 100%">
+                            <mat-form-field class="mr-3" appearance="standard">
+                                <mat-label>Type</mat-label>
+                                <input matInput placeholder="Description Type" name="name"[(ngModel)]="newSurgery.name">
+                            </mat-form-field>
+                            <mat-form-field class="mr-3" appearance="standard">
+                                <mat-label>Name CHI</mat-label>
+                                <input matInput name="name_chi" [(ngModel)]="newSurgery.name_chi">
+                            </mat-form-field>
+                            <mat-form-field class="mr-3" appearance="standard">
+                                <mat-label>Value Amount</mat-label>
+                                <input matInput name="price" [(ngModel)]="newSurgery.price">
+                            </mat-form-field>
+                            <mat-form-field class="mr-3" appearance="standard">
+                                <mat-label>RMK</mat-label>
+                                <input matInput name="RMK" [(ngModel)]="newSurgery.RMK">
+                            </mat-form-field>
+                            <mat-form-field class="mr-3" appearance="standard">
+                                <mat-label>Effective Date</mat-label>
+                                <input matInput name="eff_date" [(ngModel)]="newSurgery.eff_date">
+                            </mat-form-field>
+                            <mat-form-field class="mr-3" appearance="standard">
+                                <mat-label>Expiry Date</mat-label>
+                                <input matInput name="exp_date" [(ngModel)]="newSurgery.exp_date">
+                            </mat-form-field>
+                            <mat-form-field class="mr-3" appearance="standard">
+                                <mat-label>Seq Order</mat-label>
+                                <input matInput name="order" [(ngModel)]="newSurgery.order">
+                            </mat-form-field>
+                        </div>
+                        <div><button mat-button type="submit" class="update-btn">Submit</button></div>
+                    </form>
+                </div>
             </div>
-            <button type="submit" mat-button class="update-btn">Select Service Provider</button>
-        </form>
+        </ng-container>
+
     </div>
-
-    <h3>{{ currentSP?.name }}</h3>
-
-    <div *ngIf="currentSP != null">
-        <h5>Available Surgery Types</h5>
-        <mat-form-field>
-            <mat-label>Select a surgery</mat-label>
-            <mat-select [(ngModel)]="selected" name="surgery">
-                <mat-option *ngFor="let surgery of surgeries" [value]="surgery.value">
-                    {{surgery.viewValue}}
-                </mat-option>
-            </mat-select>
-        </mat-form-field>
-    </div>
-
-    <div *ngIf="selected !== ''">
-        <table class="table">
-            <thead>
-                <tr class="row d-flex">
-                    <th class="col-3">Misc ID</th>
-                    <th class="col-3">Type</th>
-                    <th class="col-3">Type Description</th>
-                    <th class="col-3">Ext Ref Value</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr class="row d-flex">
-                    <th class="col-3">5</th>
-                    <td class="col-3">S</td>
-                    <td class="col-3">Surgery Package</td>
-                    <td class="col-3"> LA </td>
-                </tr>
-            </tbody>
-            <thead>
-                <tr class="row d-flex">
-                    <th class="col-3">Name_CHI</th>
-                    <th class="col-3">Value Amt</th>
-                    <th class="col-3">Effective Date</th>
-                    <th class="col-3">Expiry Date</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr class="row d-flex">
-                    <th class="col-3">-</th>
-                    <td class="col-3">6000</td>
-                    <td class="col-3">2020-04-22 Date</td>
-                    <td class="col-3">2022-04-21</td>
-                </tr>
-            </tbody>
-            <thead>
-                <tr class="row d-flex">
-                    <th class="col-3">RMK</th>
-                    <th class="col-3">Seq Order</th>
-                    <th class="col-3">SP_ID</th>
-                    <th class="col-3"></th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr class="row d-flex">
-                    <th class="col-3">-</th>
-                    <td class="col-3">2</td>
-                    <td class="col-3">A</td>
-                    <td class="col-3">
-                        <button mat-button class="details-btn mr-2">Update</button>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-
-</div>
+</ng-container>
+<router-outlet></router-outlet>

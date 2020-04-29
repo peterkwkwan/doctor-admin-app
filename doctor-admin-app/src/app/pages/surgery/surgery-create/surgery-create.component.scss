@@ -1,0 +1,61 @@
+@import "src/styles-variables.scss"; 
+
+.container-fluid {
+    padding: 5%;
+    margin: 0;
+    width: 100%;
+}
+
+.update-btn {
+    border: 1px solid $manulife-green;
+    margin: 10px 0;
+}
+
+.update-btn:hover {
+    border: 1px solid $white;
+    color: $white;
+    background-color: $manulife-green;
+}
+
+.details-btn {
+    border: 1px solid $manulife-grey;
+    margin: 10px 0;
+}
+
+.details-btn:hover{
+    border: 1px solid $white;
+    color: $white;
+    background-color: $manulife-dark;
+}
+
+.remove-btn {
+    border: 1px solid $manulife-pink;
+    margin: 10px 0;
+}
+
+.remove-btn:hover {
+    border: 1px solid red;
+    color: $white;
+    background-color: $manulife-dark-pink;
+}
+
+
+.table{
+    width: 100%;
+    .row {
+    width: 100%;
+    }
+    th {
+        font-family: ManulifeJHSans-Demibold;
+    }
+}
+
+.search-form {
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+  }
+  
+  .full-width {
+    width: 100%;
+  }

@@ -2,13 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { ClinicApiService } from 'src/app/shared/api/clinic-api.service';
 import { ActivatedRoute } from '@angular/router';
 import { Clinic } from 'src/app/shared/api/clinic-model';
-import { ServiceProvider } from 'src/app/shared/api/sp-model';
-import { SPApiService } from 'src/app/shared/api/sp-api.service';
 import { DoctorApiService } from 'src/app/shared/api/doctor-api.service';
+import { SPPackageApiService } from 'src/app/shared/api/sp-package-api.service';
 import { Doctor } from 'src/app/shared/api/doctor-model';
 import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
+import { SPPackage } from 'src/app/shared/api/sp-package-model';
 
 @Component({
   selector: 'app-clinic-details',
@@ -19,13 +19,13 @@ export class ClinicDetailsComponent implements OnInit {
 
   currentClinic: Clinic = null;
   availableDoctors: Doctor[] = [];
-  serviceProvider: ServiceProvider = null;
+  package: SPPackage = null;
   doctorSearchForm = new FormControl();
   allDocs: Doctor[] =  [];
   filteredDoctors: Observable<Doctor[]>;
 
   constructor( private clinicApiService: ClinicApiService,
-    private spApiService: SPApiService,
+    private packageApiService: SPPackageApiService,
     private doctorApiService: DoctorApiService,
     private route: ActivatedRoute ) { }
 
@@ -53,7 +53,7 @@ export class ClinicDetailsComponent implements OnInit {
         data => {
           this.currentClinic = data;
           this.getDoctors();
-          this.getServiceProvider(this.currentClinic.service_providers[0].id);
+          this.getPackage(this.currentClinic.sp_package[0].id);
         },
         error => {
           console.log(error);
@@ -70,11 +70,11 @@ export class ClinicDetailsComponent implements OnInit {
     }
   }
 
-  getServiceProvider(id) {
-    this.spApiService.getById(id)
+  getPackage(id) {
+    this.packageApiService.getById(id)
       .subscribe(
         data => {
-          this.serviceProvider = data;
+          this.package = data;
         },
         error => {
           console.log(error);

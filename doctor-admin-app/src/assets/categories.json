@@ -18,5 +18,10 @@
     "name": "Doctors",
     "image": "doctor.png",
     "url": "doctor"
+  },
+  {
+    "name": "Surgery",
+    "image": "doctor.png",
+    "url": "surgery"
   }
 ]

@@ -4,9 +4,13 @@ import { ServiceProvider } from 'src/app/shared/api/sp-model';
 import { SPApiService } from 'src/app/shared/api/sp-api.service';
 import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs';
-import {map, startWith} from 'rxjs/operators';
+import { map, startWith } from 'rxjs/operators';
 import { SPPackage } from 'src/app/shared/api/sp-package-model';
 import { SPPackageApiService } from 'src/app/shared/api/sp-package-api.service';
+import { ClinicApiService } from 'src/app/shared/api/clinic-api.service';
+import { Clinic } from 'src/app/shared/api/clinic-model';
+import { Doctor} from 'src/app/shared/api/doctor-model';
+import { DoctorApiService } from 'src/app/shared/api/doctor-api.service';
 
 @Component({
   selector: 'app-package-details',
@@ -16,29 +20,33 @@ import { SPPackageApiService } from 'src/app/shared/api/sp-package-api.service';
 export class PackageDetailsComponent implements OnInit {
 
   currentPackage: SPPackage = null;
-  serviceProviders: ServiceProvider[] = [];
-  spSearchForm = new FormControl();
-  allSPs: ServiceProvider[] =  [];
-  filteredSPs: Observable<ServiceProvider[]>;
+  currentProvider: ServiceProvider = null;
+  allClinics: Clinic[] = [];
+  availableClinics: Clinic[] = [];
+  availableDoctors: Doctor[] = [];
+  clinicSearchForm = new FormControl();
+  filteredClinic: Observable<Clinic[]>;
 
-  constructor( private spApiService: SPApiService,
+  constructor(private spApiService: SPApiService,
     private packageApiService: SPPackageApiService,
-    private route: ActivatedRoute ) { }
+    private clinicApiService: ClinicApiService,
+    private doctorApiService: DoctorApiService,
+    private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.getPackage(this.route.snapshot.paramMap.get('id'));
-    this.getAllServiceProviders();
-    this.filteredSPs = this.spSearchForm.valueChanges
+    this.getAllClinics();
+    this.filteredClinic = this.clinicSearchForm.valueChanges
     .pipe(
       startWith(''),
       map(value => this.filter(value))
     );
   }
 
-  getAllServiceProviders(){
-    this.spApiService.getAll().subscribe(
+  getAllClinics(){
+    this.clinicApiService.getAll().subscribe(
       data => {
-        this.allSPs = data;
+        this.allClinics = data;
       }
     )
   }
@@ -48,45 +56,67 @@ export class PackageDetailsComponent implements OnInit {
       .subscribe(
         data => {
           this.currentPackage = data;
-          console.log(this.currentPackage);
-          this.getServiceProviders();
+          this.getServiceProvider();
+          this.getClinic();
+          this.getDoctor();
         },
         error => {
           console.log(error);
         });
   }
 
-  getServiceProviders() {
-    for(var i = 0; i < this.currentPackage.service_providers.length; i++){
-      this.spApiService.getById(this.currentPackage.service_providers[i].id).subscribe(
-        (data: ServiceProvider) => {
-          this.serviceProviders.push(data);
-        }
-      ) 
+  getClinic() {
+    for (var i = 0; i < this.currentPackage.clinics.length; i++) {
+      let clinicId = this.currentPackage.clinics[i].id;
+      this.clinicApiService.getById(clinicId).subscribe(
+        data => {
+          this.availableClinics.push(data);
+        },
+        err => {
+          console.log(err);
+        });
     }
   }
+  
+  getDoctor(){
+    for (var i = 0; i < this.currentPackage.clinics.length; i++) {
+      let clinicId = this.currentPackage.clinics[i].id;
+      this.doctorApiService.getById(clinicId).subscribe(
+        data => {
+          this.availableDoctors.push(data);
+        },
+        err => {
+          console.log(err);
+        });
+    }
+  }
+
+  getServiceProvider() {
+    this.spApiService.getById(this.currentPackage.service_provider.id).subscribe(
+      (data: ServiceProvider) => {
+        this.currentProvider = data;
+      }
+    )
+  };
 
   private filter(value: string) {
     const filterValue = value.toLowerCase();
-    return this.allSPs.filter(
-      selectedSP => selectedSP.name.toLowerCase().includes(filterValue) || 
-      selectedSP.id.toString().includes(filterValue))
-  }
-
-  remove(id){
-    for(var i = 0; i < this.serviceProviders.length; i ++){
-      if(this.serviceProviders[i].id === id){
-        this.serviceProviders.splice(i, 1);
-      }
-    }
+    return this.allClinics.filter(
+      selectedClinic => selectedClinic.name.toLowerCase().includes(filterValue) || 
+      selectedClinic.id.toString().includes(filterValue))
   }
 
   onSubmit(){
-    for(var i = 0; i < this.allSPs.length; i++){
-      if(this.allSPs[i].name ===  this.spSearchForm.value){
-        this.serviceProviders.push(this.allSPs[i])
+    for(var i = 0; i < this.allClinics.length; i++){
+      if(this.allClinics[i].name ===  this.clinicSearchForm.value){
+        this.availableClinics.push(this.allClinics[i]);
+        this.doctorApiService.getById(this.allClinics[i].doctor[0].id).subscribe(
+          data => {
+            this.availableDoctors.push(data);
+          }
+        );
       }
     }
   }
-
 }
+

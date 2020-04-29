@@ -43,7 +43,7 @@
                     <td class="col-5">{{ doctor?.lastName | uppercase }}, {{ doctor?.firstName }}</td>
                     <td class="col-3">
                         <button mat-button class="details-btn mr-2"
-                            [routerLink]="'/doctor/' + doctor?.id">Details</button>
+                            [routerLink]="'/home/doctor/' + doctor?.id">Details</button>
                         <button mat-button class="remove-btn" (click)="remove(doctor?.id)">Remove</button>
                     </td>
                 </tr>
@@ -65,12 +65,12 @@
             <button type="submit" mat-button class="update-btn">Add Doctor</button>
         </form>
     </div>
-    <h3>Associated Service Provider</h3>
+    <h3>Associated Service Provider Package</h3>
     <div class="card" style="width: 18rem;">
         <div class="card-body">
-            <h5 class="card-title">{{ serviceProvider?.id }}</h5>
-            <h6 class="card-subtitle mb-2 text-muted">{{ serviceProvider?.name }}</h6>
-            <a [routerLink]="'/service-provider/' + serviceProvider?.id" class="card-link">Service Provider details</a>
+            <h5 class="card-title">{{ package?.id }}</h5>
+            <h6 class="card-subtitle mb-2 text-muted">{{ package?.name }}</h6>
+            <a [routerLink]="'/home/sp-package/' + package?.id" class="card-link">Package details</a>
         </div>
     </div>
 </div>

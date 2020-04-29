@@ -41,6 +41,7 @@ import { PackageCreateComponent } from './pages/sp-package/package-create/packag
 import { PackageDetailsComponent } from './pages/sp-package/package-details/package-details.component';
 import { PackageUpdateComponent } from './pages/sp-package/package-update/package-update.component';
 import { SurgeryComponent } from './pages/surgery/surgery.component';
+import { SurgeryCreateComponent } from './pages/surgery/surgery-create/surgery-create.component';
 
 @NgModule({
   declarations: [
@@ -64,7 +65,8 @@ import { SurgeryComponent } from './pages/surgery/surgery.component';
     PackageCreateComponent,
     PackageDetailsComponent,
     PackageUpdateComponent,
-    SurgeryComponent
+    SurgeryComponent,
+    SurgeryCreateComponent
   ],
   imports: [
     BrowserModule,

@@ -25,45 +25,8 @@
             </tr>
         </tbody>
     </table>
-    <button mat-button class="update-btn" [routerLink]="['/service-provider/update/' + currentSP?.id]">Update Service
+    <button mat-button class="update-btn" [routerLink]="['service-provider/update/' + currentSP?.id]">Update Service
         Provider</button>
-
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th>Clinic ID</th>
-                <th>Clinic Name</th>
-                <th>Doctor ID</th>
-                <th>Doctor Name</th>
-                <th>Effective Date</th>
-                <th>Expiry Date</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr class="table-row" *ngFor="let clinic of clinics">
-                <td>{{ clinic.id }}</td>
-                <td>{{ clinic?.name }}</td>
-                <td>{{ clinic?.doctor.id  }}</td>
-                <td>Doctor Name Here</td>
-                <td>04-12-2020</td>
-                <td>04-11-2022</td>
-                <td>
-                    <button mat-button>Remove</button>
-                </td>
-            </tr>
-        </tbody>
-        <mat-form-field>
-            <mat-label>Select a clinic</mat-label>
-            <mat-select [(value)]="selected">
-                <mat-option>None</mat-option>
-                <mat-option value="option1">Option 1</mat-option>
-                <mat-option value="option2">Option 2</mat-option>
-                <mat-option value="option3">Option 3</mat-option>
-            </mat-select>
-        </mat-form-field>
-        <button mat-button>Add clinic</button>
-
-    </table>
 
     <h3>Service Provider Packages</h3>
     <div class="d-flex">
@@ -71,7 +34,7 @@
             <div class="card-body">
                 <h5 class="card-title">{{ package.name }}</h5>
                 <h6 class="card-subtitle mb-2 text-muted">Package ID: {{ package.id }}</h6>
-                <a href="#" [routerLink]="'/sp-package/' + package.id">Package Details</a>
+                <a href="#" [routerLink]="'/home/sp-package/' + package.id">Package Details</a>
             </div>
         </div>
     </div>
